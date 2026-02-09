@@ -2,11 +2,31 @@ import cv2
 import numpy as np
 import onnxruntime as ort
 import os 
+import requests
 
 cFile = os.path.abspath(__file__)
 basepath = os.path.dirname(cFile)
 MODELPATH = os.path.join(basepath, "src/rai.onnx")
 IMAGEPATH = os.path.join(basepath, "src/rai.jpg")
+
+if not os.path.exists(MODELPATH):
+    try:
+        MODELURL = 'https://github.com/mhbaji/goletrai/releases/download/v0.1.0-pre/rai.onnx'
+        print('Downloading model ...')
+        response = requests.get(MODELURL, stream=True)
+        total_size = int(response.headers.get('content-length', 0))
+        downloaded = 0
+        block_size = 1024
+
+        with open(MODELPATH, "wb") as f:
+            for data in response.iter_content(block_size):
+                f.write(data)
+                downloaded += len(data)
+                percent = downloaded * 100 / total_size
+                print(f"\rDownloading: {percent:.2f}%", end="")
+        print("\nDownloaded.")
+    except Exception as e:
+        print(f"error: {e}")
 
 class GoletRai:
     def __init__(self, model_path:str=MODELPATH, iou_thresh:float=0.5):
