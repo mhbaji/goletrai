@@ -1,0 +1,16 @@
+[project]
+name = "goletrai"
+version = "0.1.0"
+description = "Face detection library using ONNX Runtime and Openvino"
+authors = [{ name="Hilal", email="mhilalbayuaji@gmail.com" }]
+license = { text="MIT" }
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "onnxruntime",
+    "opencv-python",
+    "numpy"
+]
+
+[tool.setuptools.packages.find]
+where = ["goletrai"]

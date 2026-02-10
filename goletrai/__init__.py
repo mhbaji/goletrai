@@ -2,7 +2,6 @@ import cv2
 import numpy as np
 import onnxruntime as ort
 import os 
-import requests
 
 cFile = os.path.abspath(__file__)
 basepath = os.path.dirname(cFile)
@@ -10,6 +9,7 @@ MODELPATH = os.path.join(basepath, "src/rai.onnx")
 IMAGEPATH = os.path.join(basepath, "src/rai.jpg")
 
 if not os.path.exists(MODELPATH):
+    import requests
     try:
         MODELURL = 'https://github.com/mhbaji/goletrai/releases/download/v0.1.0-pre/rai.onnx'
         print('Downloading model ...')
