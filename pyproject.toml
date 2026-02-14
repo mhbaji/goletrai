@@ -7,10 +7,10 @@ license = { text="MIT" }
 readme = "README.md"
 requires-python = ">=3.11"
 dependencies = [
-    "onnxruntime",
-    "opencv-python",
-    "numpy"
+    "onnxruntime==1.20.0",
+    "opencv-python==4.11.0.86",
+    "numpy==2.2.5"
 ]
 
 [tool.setuptools.packages.find]
-where = ["goletrai"]
+where = ["."]
