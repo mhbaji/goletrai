@@ -1,6 +1,6 @@
 [project]
 name = "goletrai"
-version = "0.2.3"
+version = "0.2.4"
 description = "Face detection library using ONNX Runtime and Openvino"
 authors = [{ name="Hilal", email="mhilalbayuaji@gmail.com" }]
 license = { text="MIT" }
