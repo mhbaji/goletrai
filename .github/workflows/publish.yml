@@ -7,7 +7,8 @@ on:
 jobs:
   publish:
     runs-on: ubuntu-latest
-    environment: release
+    environment: 
+      name: release
     permissions:
       id-token: write   # wajib untuk OIDC
       contents: read
