@@ -52,9 +52,9 @@ class Models():
 
         if not os.path.exists(cachePath):
             print("File Cache Tidak Ditemukan")
+            Models.download(remoteData['history'][remoteData['version']]['url'], modelpath)
             JSON.save(cachePath, remoteData)
             print("Simpan File Cache")
-            Models.download(remoteData['latest'], modelpath)
         else:
             cacheData = JSON.read(cachePath)
             if cacheData['version'] != remoteData['version']:
@@ -62,6 +62,7 @@ class Models():
                     f"""Versi Model Sekarang: {cacheData['version']},\n
                     Sudah Tersedia Versi Terbaru yaitu {remoteData['version']}"""
                     )
-                Models.download(remoteData['latest'], modelpath)
+                Models.download(remoteData['history'][remoteData['version']]['url'], modelpath)
+                JSON.save(cachePath, remoteData)
             else:
                 print(f"Model Sudah Versi Terbaru yaitu {cacheData['version']}")
