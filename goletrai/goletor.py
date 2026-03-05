@@ -36,21 +36,10 @@ class GoletRai:
     def ning(self, image, conf_thresh:float=0.5):
         image_input = self.preprocess(image)
         outputs = self.session.run(None, {self.model_inputs[0].name: image_input})
-        bboxes = []
-        scores = []
-        for outt in outputs[0][0]:
-            x1, y1, x2, y2, confs, clsss = outt
-            if confs >= conf_thresh:
-                bbx = [int(_bbx) for _bbx in [x1, y1, x2, y2]]
-                bboxes.append(bbx)
-                scores.append(float(confs))
-
-        indices = cv2.dnn.NMSBoxes(bboxes, scores, conf_thresh, self.iou_thresh)
-        results = []
-        if len(indices) > 0:
-            for i in indices.flatten():
-                xmin, ymin, xmax, ymax = bboxes[i]
-                results.append([xmin, ymin, xmax, ymax, scores[i]])
+        out_arr = outputs[0][0]
+        mask = out_arr[:, 4] >= conf_thresh
+        filtered = out_arr[mask]
+        results = [[int(x1), int(y1), int(x2), int(y2), float(score)] for (x1, y1, x2, y2, score) in filtered[:, :5]]
         return results
     
     def coba(self, conf_thresh:float=0.5, show:bool=False):
