@@ -1,5 +1,5 @@
 {
-  "version": "v4.0",
+  "version": "v5.0",
   "history": {
     "v1": {
       "release": "2026-02-09",
@@ -20,6 +20,10 @@
     "v4.0":{
       "release": "2026-03-10",
       "url": "https://github.com/mhbaji/goletrai/releases/download/v0.4.0-pre/v4.onnx"
+    },
+    "v5.0":{
+      "release": "2026-03-13",
+      "url": "https://github.com/mhbaji/goletrai/releases/download/v0.5.0-pre/v5.onnx"
     }
   }
 }
